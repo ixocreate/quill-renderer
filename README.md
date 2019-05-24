@@ -1,4 +1,4 @@
-# IXOCREATE Quill Renderer
+# IXOCREATE Quill Renderer Library
 
 [![Build Status](https://travis-ci.com/ixocreate/quill-renderer.svg?branch=master)](https://travis-ci.com/ixocreate/quill-renderer)
 [![Coverage Status](https://coveralls.io/repos/github/ixocreate/quill-renderer/badge.svg?branch=master)](https://coveralls.io/github/ixocreate/quill-renderer?branch=master)
