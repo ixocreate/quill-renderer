@@ -1,0 +1,29 @@
+language: php
+sudo: false
+
+php:
+  - "7.1"
+  - "7.2"
+  - "7.3"
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+install:
+  - composer install --prefer-dist --no-interaction
+
+script:
+  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; else vendor/bin/phpunit; fi
+  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then vendor/bin/php-cs-fixer fix --config=vendor/ixocreate/coding-standard/.php_cs -v --diff --dry-run --using-cache=no; fi
+
+after_success:
+  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then php vendor/bin/php-coveralls -v; fi
+
+notifications:
+  email: false
+  slack:
+    on_success: change
+    on_failure: always
+    rooms:
+      secure: "PXOPwmS78vCO9KdktDO9NdJ3nQyc6CcxbDZ4RNbE9t2V61Rwo0wCJqXzLacEmeltRl+K2BN+MaJeQ5X0jzaW1F3DQrNI2vNiQpag7QVnb8g9H/aw9S4OSVeZllamMVxPqldqyX93XqhHHmFg02Y6dmD/InzRy7ou4IMojNMGC15Bj7PX8kX7GDGKyI0WVfM69hzMMUtIQe88vrE6vL8VqHul9tP5VC88Vfhs2Wep4/IeRJ/p2X0Qv6QVHNN/BWEVGs5fbie97P42mMZdp5lmYBNbvy/6BGo+8Xp0dee+1bk0VHktG4AQO3jp7qQlgI2/SJE8eJdJnAiic4KJhhLazzna2UY9coVHqDAMUBZ2z2WLNoIWOvM6TdXWKmbcB9XjFINpOp1rxNqmyFN/Uh6ZYqEle+TSE9nLRztA3BL96LUgCwV2K+wrZoKq6DSo60iy1ifLUKsI9h/VIni5Rli11TMrbUqw+ifzA6Lx0zJJ18Ga/4WVHcpgBThxDNHOk3uAXc+9glh6qLZLeXXtKDQqpxXoIMiewjGqI/fU1pR4wrFPDYqBO8OZD70WzY392yfYjGzBNrLP6/k38/HfsoxwtogbxTws+QaCd4Xo2sgRFw2SHKLMdZwip6/CPl3Z0PNKoM7C3/V6NI/Dgp2m6yZtG2iZPvMOuugqkQ0D93gKsDo="
