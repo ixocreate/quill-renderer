@@ -25,6 +25,7 @@ use Ixocreate\QuillRenderer\Insert\Image;
 use Ixocreate\QuillRenderer\Insert\Insert;
 use Ixocreate\QuillRenderer\Insert\InsertInterface;
 use Ixocreate\QuillRenderer\Insert\Italic;
+use Ixocreate\QuillRenderer\Insert\Linebreak;
 use Ixocreate\QuillRenderer\Insert\Link;
 use Ixocreate\QuillRenderer\Insert\Strike;
 use Ixocreate\QuillRenderer\Insert\Subscript;
@@ -85,6 +86,7 @@ final class Renderer
         $this->addInsert(new Underline());
         $this->addInsert(new Link());
         $this->addInsert(new Image());
+        $this->addInsert(new Linebreak());
     }
 
     /**
