@@ -321,7 +321,7 @@ class RendererTest extends TestCase
                     ],
                 ],
                 'html' => "<h1>h1</h1><ol><li><b>List 1</b></li><li><i>List 2</i></li><li>List 3</li></ol><ul><li><i>List B1</i></li><li>List B2</li></ul>",
-            ]
+            ],
         ];
     }
 }
