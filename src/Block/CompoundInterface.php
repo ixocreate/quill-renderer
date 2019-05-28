@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Ixocreate\QuillRenderer\Block;
 
-use Ixocreate\QuillRenderer\Delta;
 use Ixocreate\QuillRenderer\Insert\InsertInterface;
 
 interface CompoundInterface

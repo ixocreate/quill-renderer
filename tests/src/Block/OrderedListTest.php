@@ -13,7 +13,6 @@ use Ixocreate\QuillRenderer\Block\BlockInterface;
 use Ixocreate\QuillRenderer\Block\OrderedList;
 use Ixocreate\QuillRenderer\Delta;
 use Ixocreate\QuillRenderer\Insert\Insert;
-use Ixocreate\QuillRenderer\Insert\InsertInterface;
 use PHPUnit\Framework\TestCase;
 
 /**

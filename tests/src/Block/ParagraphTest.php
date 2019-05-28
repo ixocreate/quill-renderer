@@ -9,11 +9,9 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\QuillRenderer\Block;
 
-use Ixocreate\QuillRenderer\Block\BlockInterface;
 use Ixocreate\QuillRenderer\Block\Paragraph;
 use Ixocreate\QuillRenderer\Delta;
 use Ixocreate\QuillRenderer\Insert\Insert;
-use Ixocreate\QuillRenderer\Insert\InsertInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
