@@ -69,21 +69,15 @@ final class Header4Test extends TestCase
         ];
     }
 
-    public function testAddImmutable()
+    public function testFinishImmutable()
     {
         $block = new Header4();
-        $newBlock = $block->add($this->createMock(InsertInterface::class));
-
+        $newBlock = $block->finish();
         $this->assertNotSame($newBlock, $block);
-        $this->assertInstanceOf(Header4::class, $newBlock);
-    }
 
-    public function testAccept()
-    {
         $block = new Header4();
-
-        $this->assertTrue($block->accept());
-        $this->assertTrue($block->accept($this->createMock(BlockInterface::class)));
+        $newBlock = $block->finish((new Insert())->withDelta(new Delta(['insert' => 'test'])));
+        $this->assertNotSame($newBlock, $block);
     }
 
     public function testHtml()
@@ -91,7 +85,8 @@ final class Header4Test extends TestCase
         $block = new Header4();
         $this->assertSame('<h4></h4>', $block->html());
 
-        $block = $block->add((new Insert())->withDelta(new Delta(['insert' => 'test'])));
+        $block = new Header4();
+        $block = $block->finish((new Insert())->withDelta(new Delta(['insert' => 'test'])));
         $this->assertSame('<h4>test</h4>', $block->html());
     }
 }

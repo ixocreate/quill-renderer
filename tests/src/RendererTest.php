@@ -303,6 +303,15 @@ class RendererTest extends TestCase
                             ],
                         ],
                         [
+                            'insert' => ' ',
+                        ],
+                        [
+                            'insert' => 'List B1bold',
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                        ],
+                        [
                             'insert' => "\n",
                             'attributes' => [
                                 'list' => 'bullet',
@@ -320,7 +329,7 @@ class RendererTest extends TestCase
 
                     ],
                 ],
-                'html' => "<h1>h1</h1><ol><li><b>List 1</b></li><li><i>List 2</i></li><li>List 3</li></ol><ul><li><i>List B1</i></li><li>List B2</li></ul>",
+                'html' => "<h1>h1</h1><ol><li><b>List 1</b></li><li><i>List 2</i></li><li>List 3</li></ol><ul><li><i>List B1</i> <b>List B1bold</b></li><li>List B2</li></ul>",
             ],
         ];
     }

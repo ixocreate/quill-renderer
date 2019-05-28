@@ -69,21 +69,15 @@ final class ParagraphTest extends TestCase
         ];
     }
 
-    public function testAddImmutable()
+    public function testFinishImmutable()
     {
         $block = new Paragraph();
-        $newBlock = $block->add($this->createMock(InsertInterface::class));
-
+        $newBlock = $block->finish();
         $this->assertNotSame($newBlock, $block);
-        $this->assertInstanceOf(Paragraph::class, $newBlock);
-    }
 
-    public function testAccept()
-    {
         $block = new Paragraph();
-
-        $this->assertTrue($block->accept());
-        $this->assertTrue($block->accept($this->createMock(BlockInterface::class)));
+        $newBlock = $block->finish((new Insert())->withDelta(new Delta(['insert' => 'test'])));
+        $this->assertNotSame($newBlock, $block);
     }
 
     public function testHtml()
@@ -91,7 +85,8 @@ final class ParagraphTest extends TestCase
         $block = new Paragraph();
         $this->assertSame('<p></p>', $block->html());
 
-        $block = $block->add((new Insert())->withDelta(new Delta(['insert' => 'test'])));
+        $block = new Paragraph();
+        $block = $block->finish((new Insert())->withDelta(new Delta(['insert' => 'test'])));
         $this->assertSame('<p>test</p>', $block->html());
     }
 }

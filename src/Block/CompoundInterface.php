@@ -12,11 +12,13 @@ namespace Ixocreate\QuillRenderer\Block;
 use Ixocreate\QuillRenderer\Delta;
 use Ixocreate\QuillRenderer\Insert\InsertInterface;
 
-interface BlockInterface
+interface CompoundInterface
 {
-    public function finish(InsertInterface ...$inserts): BlockInterface;
+    public function accept(BlockInterface $block): bool;
 
-    public function isResponsible(Delta $delta): bool;
-
-    public function html(): string;
+    /**
+     * @param InsertInterface[] $inserts
+     * @return BlockInterface
+     */
+    public function compound(InsertInterface ...$inserts): BlockInterface;
 }
