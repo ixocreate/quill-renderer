@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/ixocreate
- * @copyright IXOCREATE GmbH
+ * @copyright IXOLIT GmbH
  * @license MIT License
  */
 
@@ -9,11 +9,9 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\QuillRenderer\Block;
 
-use Ixocreate\QuillRenderer\Block\BlockInterface;
 use Ixocreate\QuillRenderer\Block\Header2;
 use Ixocreate\QuillRenderer\Delta;
 use Ixocreate\QuillRenderer\Insert\Insert;
-use Ixocreate\QuillRenderer\Insert\InsertInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -69,21 +67,15 @@ final class Header2Test extends TestCase
         ];
     }
 
-    public function testAddImmutable()
+    public function testFinishImmutable()
     {
         $block = new Header2();
-        $newBlock = $block->add($this->createMock(InsertInterface::class));
-
+        $newBlock = $block->finish();
         $this->assertNotSame($newBlock, $block);
-        $this->assertInstanceOf(Header2::class, $newBlock);
-    }
 
-    public function testAccept()
-    {
         $block = new Header2();
-
-        $this->assertTrue($block->accept());
-        $this->assertTrue($block->accept($this->createMock(BlockInterface::class)));
+        $newBlock = $block->finish((new Insert())->withDelta(new Delta(['insert' => 'test'])));
+        $this->assertNotSame($newBlock, $block);
     }
 
     public function testHtml()
@@ -91,7 +83,8 @@ final class Header2Test extends TestCase
         $block = new Header2();
         $this->assertSame('<h2></h2>', $block->html());
 
-        $block = $block->add((new Insert())->withDelta(new Delta(['insert' => 'test'])));
+        $block = new Header2();
+        $block = $block->finish((new Insert())->withDelta(new Delta(['insert' => 'test'])));
         $this->assertSame('<h2>test</h2>', $block->html());
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/ixocreate
- * @copyright IXOCREATE GmbH
+ * @copyright IXOLIT GmbH
  * @license MIT License
  */
 
@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Ixocreate\QuillRenderer;
 
-use Ixocreate\QuillRenderer\Block\Block;
 use Ixocreate\QuillRenderer\Block\BlockInterface;
+use Ixocreate\QuillRenderer\Block\CompoundInterface;
 use Ixocreate\QuillRenderer\Block\Header1;
 use Ixocreate\QuillRenderer\Block\Header2;
 use Ixocreate\QuillRenderer\Block\Header3;
@@ -25,6 +25,7 @@ use Ixocreate\QuillRenderer\Insert\Image;
 use Ixocreate\QuillRenderer\Insert\Insert;
 use Ixocreate\QuillRenderer\Insert\InsertInterface;
 use Ixocreate\QuillRenderer\Insert\Italic;
+use Ixocreate\QuillRenderer\Insert\Linebreak;
 use Ixocreate\QuillRenderer\Insert\Link;
 use Ixocreate\QuillRenderer\Insert\Strike;
 use Ixocreate\QuillRenderer\Insert\Subscript;
@@ -34,14 +35,14 @@ use Ixocreate\QuillRenderer\Insert\Underline;
 final class Renderer
 {
     /**
+     * @var BlockInterface[]
+     */
+    private $supportingBlocks = [];
+
+    /**
      * @var array
      */
     private $ops = [];
-
-    /**
-     * @var Block
-     */
-    private $block;
 
     /**
      * @var Insert
@@ -59,7 +60,6 @@ final class Renderer
     public function __construct()
     {
         $this->insert = new Insert();
-        $this->block = new Block();
     }
 
     /**
@@ -85,6 +85,7 @@ final class Renderer
         $this->addInsert(new Underline());
         $this->addInsert(new Link());
         $this->addInsert(new Image());
+        $this->addInsert(new Linebreak());
     }
 
     /**
@@ -100,7 +101,21 @@ final class Renderer
      */
     public function addBlock(BlockInterface $block): void
     {
-        $this->block = $this->block->addSupportingBlock($block);
+        $this->supportingBlocks[] = $block;
+    }
+
+    /**
+     * @param Delta $delta
+     * @return BlockInterface|null
+     */
+    private function getResponsible(Delta $delta): ?BlockInterface
+    {
+        foreach ($this->supportingBlocks as $block) {
+            if ($block->isResponsible($delta)) {
+                return $block;
+            }
+        }
+        return null;
     }
 
     /**
@@ -179,39 +194,52 @@ final class Renderer
 
         $ops = \array_reverse($this->ops);
 
-        /** @var Block $currentBlock */
-        $currentBlock = $this->block;
+        /** @var BlockInterface $currentBlock */
+        $currentBlock = null;
         $collection = [];
 
         foreach ($ops as $delta) {
-            $responsible = $currentBlock->getResponsible($delta);
-            if ($responsible !== null) {
-                if ($currentBlock->accept($responsible)) {
-                    $this->newBlock($currentBlock, $collection);
-                    $collection = [];
-                    $currentBlock = $this->block->withDelta($delta);
-                }
+            $responsible = $this->getResponsible($delta);
+            if ($responsible === null) {
+                $collection[] = $this->insert->withDelta($delta);
                 continue;
             }
 
-            $collection[] = $this->insert->withDelta($delta);
+            if ($currentBlock === null) {
+                $currentBlock = $responsible;
+                continue;
+            }
+
+            if (!($currentBlock instanceof CompoundInterface)) {
+                \array_unshift(
+                    $this->blocks,
+                    $currentBlock->finish(...\array_reverse($collection))
+                );
+                $collection = [];
+                $currentBlock = $responsible;
+                continue;
+            }
+
+            if (!$currentBlock->accept($responsible)) {
+                \array_unshift(
+                    $this->blocks,
+                    $currentBlock->finish(...\array_reverse($collection))
+                );
+                $collection = [];
+                $currentBlock = $responsible;
+                continue;
+            }
+
+            $currentBlock = $currentBlock->compound(...\array_reverse($collection));
+            $collection = [];
         }
 
-        if (!empty($collection)) {
-            $this->newBlock($currentBlock, $collection);
+        if (!empty($collection) && !empty($currentBlock)) {
+            \array_unshift(
+                $this->blocks,
+                $currentBlock->finish(...\array_reverse($collection))
+            );
         }
-    }
-
-    /**
-     * @param BlockInterface $block
-     * @param array $collection
-     */
-    private function newBlock(BlockInterface $block, array $collection): void
-    {
-        foreach ($collection as $item) {
-            $block = $block->add($item);
-        }
-        \array_unshift($this->blocks, $block);
     }
 
     /**

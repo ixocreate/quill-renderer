@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/ixocreate
- * @copyright IXOCREATE GmbH
+ * @copyright IXOLIT GmbH
  * @license MIT License
  */
 
@@ -88,6 +88,12 @@ class RendererTest extends TestCase
                             ],
                         ],
                         [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'linebreak' => true,
+                            ],
+                        ],
+                        [
                             'insert' => ['image' => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJUlEQVR4AY2TA4ykeRTE39i2bUfnC47B2rbGtm1PjLFt2zbjDtf27n9rbPyS7s+PVbQfF/MEuM9l80rfKhP9PXXRyhq/hJQFS0naD8cmeWnbetmrD6olo26XidVdKxLiXMzjZ2eyuJl3tzpLnDNjCbNmDXHTJry0F84tir4OjfLMulaa3auUYDdLRT5cKRAcOZ/Dm4FKnKMnjQaiJoxY5LhhWviYATdtxadHg9ujQ2UBQb6hissPqqUM71aIb8sUPqqvGDqsxwkZ1mXBQ7rWtBX/Pq2fl8t0b1dpoQMIGNC2xLtv/Po0vyDpv7RO8KBOmn+fJkOQm3QIXl1qxz06Vb+h4hdu7cqGFD1hxI/yngQN6rxDZHE6AmjV3alZkTk2K0wRpnp8eThhI/o5dERs6mT+x4/hV0JJc+YlCMIQ5H86IverJHLuY1M4niQIZAptsLNZPO50BG4UC4vfLBV9hzU/gV74KW3JytC1VenZuRzeb5fzBU7SIVwuELh+pUCA4ZdG6yD73xfz+L5Afe8gXUs6gHPZPE34MST8mbYC1VnfKBFhEBDnUY2UMm0BG+ING9EzDBvVv4zJf8G6F05ncG1X4/ViYe7b5WIp8AKDGgewKmePDtUM3x6NEQT4gFWzmEnjFU+kLFr6015gsrzwQsOyJzAXBtEwKI+FDOly4IG62GmTqKR586upS1bStB92DXKSKDMBKrNGqX/692tJQ/vctA8/ALBf+KIcFEv4AAAAAElFTkSuQmCC"],
                         ],
                         [
@@ -95,7 +101,7 @@ class RendererTest extends TestCase
                         ],
                     ],
                 ],
-                'html' => '<p><sup>Super</sup><sub>Sub</sub><s>Strike</s><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJUlEQVR4AY2TA4ykeRTE39i2bUfnC47B2rbGtm1PjLFt2zbjDtf27n9rbPyS7s+PVbQfF/MEuM9l80rfKhP9PXXRyhq/hJQFS0naD8cmeWnbetmrD6olo26XidVdKxLiXMzjZ2eyuJl3tzpLnDNjCbNmDXHTJry0F84tir4OjfLMulaa3auUYDdLRT5cKRAcOZ/Dm4FKnKMnjQaiJoxY5LhhWviYATdtxadHg9ujQ2UBQb6hissPqqUM71aIb8sUPqqvGDqsxwkZ1mXBQ7rWtBX/Pq2fl8t0b1dpoQMIGNC2xLtv/Po0vyDpv7RO8KBOmn+fJkOQm3QIXl1qxz06Vb+h4hdu7cqGFD1hxI/yngQN6rxDZHE6AmjV3alZkTk2K0wRpnp8eThhI/o5dERs6mT+x4/hV0JJc+YlCMIQ5H86IverJHLuY1M4niQIZAptsLNZPO50BG4UC4vfLBV9hzU/gV74KW3JytC1VenZuRzeb5fzBU7SIVwuELh+pUCA4ZdG6yD73xfz+L5Afe8gXUs6gHPZPE34MST8mbYC1VnfKBFhEBDnUY2UMm0BG+ING9EzDBvVv4zJf8G6F05ncG1X4/ViYe7b5WIp8AKDGgewKmePDtUM3x6NEQT4gFWzmEnjFU+kLFr6015gsrzwQsOyJzAXBtEwKI+FDOly4IG62GmTqKR586upS1bStB92DXKSKDMBKrNGqX/692tJQ/vctA8/ALBf+KIcFEv4AAAAAElFTkSuQmCC"></p>',
+                'html' => '<p><sup>Super</sup><sub>Sub</sub><s>Strike</s><br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJUlEQVR4AY2TA4ykeRTE39i2bUfnC47B2rbGtm1PjLFt2zbjDtf27n9rbPyS7s+PVbQfF/MEuM9l80rfKhP9PXXRyhq/hJQFS0naD8cmeWnbetmrD6olo26XidVdKxLiXMzjZ2eyuJl3tzpLnDNjCbNmDXHTJry0F84tir4OjfLMulaa3auUYDdLRT5cKRAcOZ/Dm4FKnKMnjQaiJoxY5LhhWviYATdtxadHg9ujQ2UBQb6hissPqqUM71aIb8sUPqqvGDqsxwkZ1mXBQ7rWtBX/Pq2fl8t0b1dpoQMIGNC2xLtv/Po0vyDpv7RO8KBOmn+fJkOQm3QIXl1qxz06Vb+h4hdu7cqGFD1hxI/yngQN6rxDZHE6AmjV3alZkTk2K0wRpnp8eThhI/o5dERs6mT+x4/hV0JJc+YlCMIQ5H86IverJHLuY1M4niQIZAptsLNZPO50BG4UC4vfLBV9hzU/gV74KW3JytC1VenZuRzeb5fzBU7SIVwuELh+pUCA4ZdG6yD73xfz+L5Afe8gXUs6gHPZPE34MST8mbYC1VnfKBFhEBDnUY2UMm0BG+ING9EzDBvVv4zJf8G6F05ncG1X4/ViYe7b5WIp8AKDGgewKmePDtUM3x6NEQT4gFWzmEnjFU+kLFr6015gsrzwQsOyJzAXBtEwKI+FDOly4IG62GmTqKR586upS1bStB92DXKSKDMBKrNGqX/692tJQ/vctA8/ALBf+KIcFEv4AAAAAElFTkSuQmCC"></p>',
             ],
 
 
@@ -297,6 +303,15 @@ class RendererTest extends TestCase
                             ],
                         ],
                         [
+                            'insert' => ' ',
+                        ],
+                        [
+                            'insert' => 'List B1bold',
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                        ],
+                        [
                             'insert' => "\n",
                             'attributes' => [
                                 'list' => 'bullet',
@@ -314,7 +329,7 @@ class RendererTest extends TestCase
 
                     ],
                 ],
-                'html' => "<h1>h1</h1><ol><li><b>List 1</b></li><li><i>List 2</i></li><li>List 3</li></ol><ul><li><i>List B1</i></li><li>List B2</li></ul>",
+                'html' => "<h1>h1</h1><ol><li><b>List 1</b></li><li><i>List 2</i></li><li>List 3</li></ol><ul><li><i>List B1</i> <b>List B1bold</b></li><li>List B2</li></ul>",
             ],
         ];
     }

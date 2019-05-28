@@ -11,7 +11,7 @@ namespace Ixocreate\QuillRenderer\Insert;
 
 use Ixocreate\QuillRenderer\Delta;
 
-final class Underline implements InsertInterface
+final class Linebreak implements InsertInterface
 {
     /**
      * @var InsertInterface
@@ -28,11 +28,7 @@ final class Underline implements InsertInterface
      */
     public function html(): string
     {
-        if (empty($this->insert)) {
-            return '';
-        }
-
-        return \sprintf('<u>%s</u>', $this->insert->html());
+        return '<br>';
     }
 
     /**
@@ -66,9 +62,11 @@ final class Underline implements InsertInterface
     public function isResponsible(Delta $delta): bool
     {
         return
-            \is_array($delta->attributes([]))
-            && \array_key_exists('underline', $delta->attributes([]))
-            && $delta->attributes([])['underline'] === true
-        ;
+            \is_string($delta->insert())
+            && $delta->insert() === "\n"
+            && \is_array($delta->attributes([]))
+            && \array_key_exists('linebreak', $delta->attributes([]))
+            && $delta->attributes([])['linebreak'] === true
+            ;
     }
 }

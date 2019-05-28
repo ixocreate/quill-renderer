@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/ixocreate
- * @copyright IXOCREATE GmbH
+ * @copyright IXOLIT GmbH
  * @license MIT License
  */
 
@@ -13,7 +13,6 @@ use Ixocreate\QuillRenderer\Block\BlockInterface;
 use Ixocreate\QuillRenderer\Block\UnorderedList;
 use Ixocreate\QuillRenderer\Delta;
 use Ixocreate\QuillRenderer\Insert\Insert;
-use Ixocreate\QuillRenderer\Insert\InsertInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -69,22 +68,34 @@ final class UnorderedListTest extends TestCase
         ];
     }
 
-    public function testAddImmutable()
-    {
-        $block = new UnorderedList();
-        $newBlock = $block->add($this->createMock(InsertInterface::class));
-
-        $this->assertNotSame($newBlock, $block);
-        $this->assertInstanceOf(UnorderedList::class, $newBlock);
-    }
-
     public function testAccept()
     {
         $block = new UnorderedList();
 
-        $this->assertTrue($block->accept());
-        $this->assertTrue($block->accept($this->createMock(BlockInterface::class)));
-        $this->assertFalse($block->accept(new UnorderedList()));
+        $this->assertFalse($block->accept($this->createMock(BlockInterface::class)));
+        $this->assertTrue($block->accept(new UnorderedList()));
+    }
+
+    public function testFinishImmutable()
+    {
+        $block = new UnorderedList();
+        $newBlock = $block->finish();
+        $this->assertNotSame($newBlock, $block);
+
+        $block = new UnorderedList();
+        $newBlock = $block->finish((new Insert())->withDelta(new Delta(['insert' => 'test'])));
+        $this->assertNotSame($newBlock, $block);
+    }
+
+    public function testCompoundImmutable()
+    {
+        $block = new UnorderedList();
+        $newBlock = $block->compound();
+        $this->assertNotSame($newBlock, $block);
+
+        $block = new UnorderedList();
+        $newBlock = $block->compound((new Insert())->withDelta(new Delta(['insert' => 'test'])));
+        $this->assertNotSame($newBlock, $block);
     }
 
     public function testHtml()
@@ -92,7 +103,13 @@ final class UnorderedListTest extends TestCase
         $block = new UnorderedList();
         $this->assertSame('<ul></ul>', $block->html());
 
-        $block = $block->add((new Insert())->withDelta(new Delta(['insert' => 'test'])));
+        $block = new UnorderedList();
+        $block = $block->compound((new Insert())->withDelta(new Delta(['insert' => 'test'])));
         $this->assertSame('<ul><li>test</li></ul>', $block->html());
+
+        $block = new UnorderedList();
+        $block = $block->compound((new Insert())->withDelta(new Delta(['insert' => 'test2'])));
+        $block = $block->compound((new Insert())->withDelta(new Delta(['insert' => 'test1'])));
+        $this->assertSame('<ul><li>test1</li><li>test2</li></ul>', $block->html());
     }
 }

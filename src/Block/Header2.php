@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/ixocreate
- * @copyright IXOCREATE GmbH
+ * @copyright IXOLIT GmbH
  * @license MIT License
  */
 
@@ -20,13 +20,15 @@ final class Header2 implements BlockInterface
     private $inserts = [];
 
     /**
-     * @param InsertInterface $insert
+     * @param InsertInterface ...$inserts
      * @return BlockInterface
      */
-    public function add(InsertInterface $insert): BlockInterface
+    public function finish(InsertInterface ...$inserts): BlockInterface
     {
         $block = clone $this;
-        $block->inserts[] = $insert;
+        foreach ($inserts as $insert) {
+            $block->inserts[] = $insert;
+        }
 
         return $block;
     }
@@ -43,15 +45,6 @@ final class Header2 implements BlockInterface
             && \array_key_exists('header', $delta->attributes())
             && $delta->attributes()['header'] === 2
         ;
-    }
-
-    /**
-     * @param BlockInterface|null $currentBlock
-     * @return bool
-     */
-    public function accept(BlockInterface $currentBlock = null): bool
-    {
-        return true;
     }
 
     /**

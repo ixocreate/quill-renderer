@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/ixocreate
- * @copyright IXOCREATE GmbH
+ * @copyright IXOLIT GmbH
  * @license MIT License
  */
 
@@ -14,11 +14,9 @@ use Ixocreate\QuillRenderer\Insert\InsertInterface;
 
 interface BlockInterface
 {
-    public function add(InsertInterface $insert): BlockInterface;
+    public function finish(InsertInterface ...$inserts): BlockInterface;
 
     public function isResponsible(Delta $delta): bool;
-
-    public function accept(BlockInterface $currentBlock = null): bool;
 
     public function html(): string;
 }

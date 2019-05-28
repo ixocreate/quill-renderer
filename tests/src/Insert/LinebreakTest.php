@@ -12,31 +12,31 @@ namespace Ixocreate\Test\QuillRenderer\Insert;
 use Ixocreate\QuillRenderer\Delta;
 use Ixocreate\QuillRenderer\Insert\Insert;
 use Ixocreate\QuillRenderer\Insert\InsertInterface;
-use Ixocreate\QuillRenderer\Insert\Superscript;
+use Ixocreate\QuillRenderer\Insert\Linebreak;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Ixocreate\QuillRenderer\Insert\Superscript
+ * @covers \Ixocreate\QuillRenderer\Insert\Linebreak
  */
-final class SuperscriptTest extends TestCase
+final class LinebreakTest extends TestCase
 {
     public function testWithInsert()
     {
         $insertMock = $this->createMock(InsertInterface::class);
-        $insert = new Superscript();
+        $insert = new Linebreak();
         $newInsert = $insert->withInsert($insertMock);
 
         $this->assertNotSame($newInsert, $insert);
-        $this->assertInstanceOf(Superscript::class, $newInsert);
+        $this->assertInstanceOf(Linebreak::class, $newInsert);
     }
 
     public function testWithDelta()
     {
-        $insert = new Superscript();
+        $insert = new Linebreak();
         $newInsert = $insert->withDelta(new Delta([]));
 
         $this->assertNotSame($newInsert, $insert);
-        $this->assertInstanceOf(Superscript::class, $newInsert);
+        $this->assertInstanceOf(Linebreak::class, $newInsert);
     }
 
     /**
@@ -44,7 +44,7 @@ final class SuperscriptTest extends TestCase
      */
     public function testIsResponsible(Delta $delta, bool $isResponsible)
     {
-        $insert = new Superscript();
+        $insert = new Linebreak();
 
         $this->assertSame($isResponsible, $insert->isResponsible($delta));
     }
@@ -68,20 +68,32 @@ final class SuperscriptTest extends TestCase
             ],
 
             [
-                'delta' => new Delta(['attributes' => ['something' => 'else']]),
+                'delta' => new Delta(['attributes' => ['linebreak' => 'else']]),
                 'isResponsible' => false,
             ],
 
             [
-                'delta' => new Delta(['attributes' => ['super' => true]]),
+                'delta' => new Delta(['insert' => "\n", 'attributes' => ['linebreak' => true]]),
                 'isResponsible' => true,
             ],
             [
-                'delta' => new Delta(['attributes' => ['super' => false]]),
+                'delta' => new Delta(['insert' => "\nsdfsdfsd", 'attributes' => ['linebreak' => true]]),
                 'isResponsible' => false,
             ],
             [
-                'delta' => new Delta(['attributes' => ['super' => 1]]),
+                'delta' => new Delta(['insert' => [], 'attributes' => ['linebreak' => true]]),
+                'isResponsible' => false,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['linebreak' => true]]),
+                'isResponsible' => false,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['linebreak' => false]]),
+                'isResponsible' => false,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['linebreak' => 1]]),
                 'isResponsible' => false,
             ],
         ];
@@ -89,9 +101,9 @@ final class SuperscriptTest extends TestCase
 
     public function testHtml()
     {
-        $superscript = new Superscript();
+        $italic = new Linebreak();
 
-        $this->assertSame('', $superscript->html());
-        $this->assertSame('<sup>Test</sup>', $superscript->withInsert((new Insert())->withDelta(new Delta(['insert' => 'Test'])))->html());
+        $this->assertSame('<br>', $italic->html());
+        $this->assertSame('<br>', $italic->withInsert((new Insert())->withDelta(new Delta(['insert' => 'Test'])))->html());
     }
 }
