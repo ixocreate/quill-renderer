@@ -17,6 +17,16 @@ use PHPUnit\Framework\TestCase;
  */
 class RendererTest extends TestCase
 {
+    public function testEmptyDeltas()
+    {
+        $renderer = new Renderer();
+        $renderer->enableDefaults();
+
+        $this->assertSame('', $renderer->render([]));
+        $this->assertSame('', $renderer->render(['ops' => null]));
+        $this->assertSame('', $renderer->render(['ops' => 'something']));
+    }
+
     /**
      * @dataProvider getDeltas
      * @param array $deltas

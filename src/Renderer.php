@@ -135,6 +135,10 @@ final class Renderer
     {
         $this->reset();
 
+        if (empty($quill['ops']) || !\is_array($quill['ops'])) {
+            return '';
+        }
+
         $this->ops = $quill['ops'];
         $this->parse();
 
