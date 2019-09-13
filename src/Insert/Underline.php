@@ -65,10 +65,11 @@ final class Underline implements InsertInterface
      */
     public function isResponsible(Delta $delta): bool
     {
+        $attributes = $delta->attributes();
         return
-            \is_array($delta->attributes([]))
-            && \array_key_exists('underline', $delta->attributes([]))
-            && $delta->attributes([])['underline'] === true
+            \is_array($attributes)
+            && \array_key_exists('underline', $attributes)
+            && ($attributes['underline'] === true || $attributes['underline'] === 'true')
         ;
     }
 }

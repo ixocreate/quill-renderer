@@ -73,16 +73,20 @@ final class BoldTest extends TestCase
             ],
 
             [
-                'delta' => new Delta(['attributes' => ['bold' => true]]),
-                'isResponsible' => true,
-            ],
-            [
                 'delta' => new Delta(['attributes' => ['bold' => false]]),
                 'isResponsible' => false,
             ],
             [
                 'delta' => new Delta(['attributes' => ['bold' => 1]]),
                 'isResponsible' => false,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['bold' => true]]),
+                'isResponsible' => true,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['bold' => 'true']]),
+                'isResponsible' => true,
             ],
         ];
     }

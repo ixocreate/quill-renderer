@@ -65,10 +65,11 @@ final class Strike implements InsertInterface
      */
     public function isResponsible(Delta $delta): bool
     {
+        $attributes = $delta->attributes();
         return
-            \is_array($delta->attributes([]))
-            && \array_key_exists('strike', $delta->attributes([]))
-            && $delta->attributes([])['strike'] === true
+            \is_array($attributes)
+            && \array_key_exists('strike', $attributes)
+            && ($attributes['strike'] === true || $attributes['strike'] === 'true')
         ;
     }
 }

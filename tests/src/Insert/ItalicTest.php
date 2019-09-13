@@ -73,16 +73,20 @@ final class ItalicTest extends TestCase
             ],
 
             [
-                'delta' => new Delta(['attributes' => ['italic' => true]]),
-                'isResponsible' => true,
-            ],
-            [
                 'delta' => new Delta(['attributes' => ['italic' => false]]),
                 'isResponsible' => false,
             ],
             [
                 'delta' => new Delta(['attributes' => ['italic' => 1]]),
                 'isResponsible' => false,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['italic' => true]]),
+                'isResponsible' => true,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['italic' => 'true']]),
+                'isResponsible' => true,
             ],
         ];
     }

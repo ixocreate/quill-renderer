@@ -61,12 +61,12 @@ final class Linebreak implements InsertInterface
      */
     public function isResponsible(Delta $delta): bool
     {
+        $attributes = $delta->attributes();
         return
-            \is_string($delta->insert())
-            && $delta->insert() === "\n"
-            && \is_array($delta->attributes([]))
-            && \array_key_exists('linebreak', $delta->attributes([]))
-            && $delta->attributes([])['linebreak'] === true
-            ;
+            $delta->insert() === "\n"
+            && \is_array($attributes)
+            && \array_key_exists('linebreak', $attributes)
+            && ($attributes['linebreak'] === true || $attributes['linebreak'] === 'true')
+        ;
     }
 }

@@ -73,16 +73,20 @@ final class UnderlineTest extends TestCase
             ],
 
             [
-                'delta' => new Delta(['attributes' => ['underline' => true]]),
-                'isResponsible' => true,
-            ],
-            [
                 'delta' => new Delta(['attributes' => ['underline' => false]]),
                 'isResponsible' => false,
             ],
             [
                 'delta' => new Delta(['attributes' => ['underline' => 1]]),
                 'isResponsible' => false,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['underline' => true]]),
+                'isResponsible' => true,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['underline' => 'true']]),
+                'isResponsible' => true,
             ],
         ];
     }
