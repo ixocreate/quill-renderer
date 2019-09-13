@@ -73,16 +73,20 @@ final class StrikeTest extends TestCase
             ],
 
             [
-                'delta' => new Delta(['attributes' => ['strike' => true]]),
-                'isResponsible' => true,
-            ],
-            [
                 'delta' => new Delta(['attributes' => ['strike' => false]]),
                 'isResponsible' => false,
             ],
             [
                 'delta' => new Delta(['attributes' => ['strike' => 1]]),
                 'isResponsible' => false,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['strike' => true]]),
+                'isResponsible' => true,
+            ],
+            [
+                'delta' => new Delta(['attributes' => ['strike' => 'true']]),
+                'isResponsible' => true,
             ],
         ];
     }
