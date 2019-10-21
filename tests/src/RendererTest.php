@@ -341,6 +341,141 @@ class RendererTest extends TestCase
                 ],
                 'html' => "<h1>h1</h1><ol><li><b>List 1</b></li><li><i>List 2</i></li><li>List 3</li></ol><ul><li><i>List B1</i> <b>List B1bold</b></li><li>List B2</li></ul>",
             ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "Line1\nLine2",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'linebreak' => 'true',
+                            ],
+                        ],
+                        [
+                            'insert' => "Line3\nLine4",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'linebreak' => 'true',
+                            ],
+                        ],
+                        [
+                            'insert' => "Line5\nLine6",
+                        ]
+                    ],
+                ],
+                'html' => '<p>Line1<br>Line2</p><p>Line3<br>Line4</p><p>Line5</p><p>Line6</p>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "Line1\nList1",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'list' => 'bullet',
+                            ],
+                        ],
+                        [
+                            'insert' => "List2",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'list' => 'bullet',
+                            ],
+                        ],
+                        [
+                            'insert' => "Line2",
+                        ]
+                    ],
+                ],
+                'html' => '<p>Line1</p><ul><li>List1</li><li>List2</li></ul><p>Line2</p>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "List1",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'list' => 'bullet',
+                            ],
+                        ],
+                        [
+                            'insert' => "Line1\nList2",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'list' => 'bullet',
+                            ],
+                        ],
+                        [
+                            'insert' => "Line2",
+                        ]
+                    ],
+                ],
+                'html' => '<ul><li>List1</li></ul><p>Line1</p><ul><li>List2</li></ul><p>Line2</p>',
+            ],
+
+            //Special case (just in case)
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "Line1\nList1",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'list' => 'bullet',
+                            ],
+                        ],
+                        [
+                            'insert' => "Line2",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'linebreak' => 'true',
+                            ],
+                        ],
+                        [
+                            'insert' => "List2",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'list' => 'bullet',
+                            ],
+                        ],
+                        [
+                            'insert' => "List3",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'list' => 'bullet',
+                            ],
+                        ],
+                        [
+                            'insert' => "Line3",
+                        ]
+                    ],
+                ],
+                'html' => '<p>Line1</p><ul><li>List1</li></ul><p>Line2</p><ul><li>List2</li><li>List3</li></ul><p>Line3</p>',
+            ],
         ];
     }
 }
