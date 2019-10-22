@@ -186,7 +186,37 @@ final class Renderer
             }
         }
 
-        $this->ops = $ops;
+        // Fix deltas with none ending slash delta
+        /** @var Delta $last */
+        $last = \end($ops);
+        if ($last->insert() !== "\n") {
+            $ops[] = new Delta(['insert' => "\n"]);
+        }
+
+        $ops = \array_reverse($ops);
+
+        $replace = false;
+        /** @var Delta $delta */
+        foreach ($ops as $key => $delta) {
+            if ($delta->insert() !== "\n") {
+                continue;
+            }
+
+            $attributes = $delta->attributes([]);
+            if (\array_key_exists('linebreak', $attributes) && $attributes['linebreak'] === true) {
+                $ops[$key] = new Delta(['insert' => "\n"]);
+                $replace = true;
+                continue;
+            }
+
+            if (empty($attributes) && $replace === true) {
+                $ops[$key] = new Delta(['insert' => "\n", 'attributes' => ['linebreak' => true]]);
+            }
+
+            $replace = false;
+        }
+
+        $this->ops = \array_reverse($ops);
     }
 
     /**

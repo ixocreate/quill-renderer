@@ -18,7 +18,7 @@ composer require ixocreate/quill-renderer
 
 ```sh
 composer install --dev
-phpunit
+./vendor/bin/phpunit
 ```
 
 ## Documentation
