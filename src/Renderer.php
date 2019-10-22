@@ -202,14 +202,13 @@ final class Renderer
                 continue;
             }
 
-            $attributes = $delta->attributes([]);
-            if (\array_key_exists('linebreak', $attributes) && $attributes['linebreak'] === true) {
+            if ((new Linebreak())->isResponsible($delta)) {
                 $ops[$key] = new Delta(['insert' => "\n"]);
                 $replace = true;
                 continue;
             }
 
-            if (empty($attributes) && $replace === true) {
+            if ((new Paragraph())->isResponsible($delta) && $replace === true) {
                 $ops[$key] = new Delta(['insert' => "\n", 'attributes' => ['linebreak' => true]]);
             }
 
