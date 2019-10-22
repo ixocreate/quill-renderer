@@ -368,7 +368,7 @@ class RendererTest extends TestCase
                         ],
                         [
                             'insert' => "Line5\nLine6",
-                        ]
+                        ],
                     ],
                 ],
                 'html' => '<p>Line1<br>Line2</p><p>Line3<br>Line4</p><p>Line5</p><p>Line6</p>',
@@ -397,7 +397,7 @@ class RendererTest extends TestCase
                         ],
                         [
                             'insert' => "Line2",
-                        ]
+                        ],
                     ],
                 ],
                 'html' => '<p>Line1</p><ul><li>List1</li><li>List2</li></ul><p>Line2</p>',
@@ -426,7 +426,7 @@ class RendererTest extends TestCase
                         ],
                         [
                             'insert' => "Line2",
-                        ]
+                        ],
                     ],
                 ],
                 'html' => '<ul><li>List1</li></ul><p>Line1</p><ul><li>List2</li></ul><p>Line2</p>',
@@ -474,7 +474,7 @@ class RendererTest extends TestCase
                         ],
                         [
                             'insert' => "Line3",
-                        ]
+                        ],
                     ],
                 ],
                 'html' => '<p>Line1</p><ul><li>List1</li></ul><p>Line2</p><ul><li>List2</li><li>List3</li></ul><p>Line3</p>',
