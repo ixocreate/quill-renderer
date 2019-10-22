@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ixocreate/quill-renderer/compare/0.1.3...develop)
+## [Unreleased](https://github.com/ixocreate/quill-renderer/compare/0.1.4...develop)
+
+## [v0.1.4 (2019-10-22)](https://github.com/ixocreate/schema-package/compare/0.1.3...0.1.4)
+### Fixed
+- improved delta check
 
 ## [v0.1.3 (2019-10-22)](https://github.com/ixocreate/schema-package/compare/0.1.2...0.1.3)
 ### Fixed
