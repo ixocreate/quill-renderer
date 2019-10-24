@@ -196,20 +196,30 @@ final class Renderer
         $ops = \array_reverse($ops);
 
         $replace = false;
+        $prevIsParagraph = null;
         /** @var Delta $delta */
         foreach ($ops as $key => $delta) {
             if ($delta->insert() !== "\n") {
+                $prevIsParagraph = false;
                 continue;
             }
 
             if ((new Linebreak())->isResponsible($delta)) {
-                $ops[$key] = new Delta(['insert' => "\n"]);
+                if ($prevIsParagraph === true) {
+                    unset($ops[$key]);
+                } elseif ($replace === false) {
+                    $ops[$key] = new Delta(['insert' => "\n"]);
+                }
+
                 $replace = true;
+                $prevIsParagraph = false;
                 continue;
             }
 
             if ((new Paragraph())->isResponsible($delta) && $replace === true) {
                 $ops[$key] = new Delta(['insert' => "\n", 'attributes' => ['linebreak' => true]]);
+            } elseif ((new Paragraph())->isResponsible($delta)) {
+                $prevIsParagraph = true;
             }
 
             $replace = false;
