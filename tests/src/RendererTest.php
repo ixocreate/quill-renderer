@@ -473,6 +473,47 @@ class RendererTest extends TestCase
                 'html' => '<p><b>Line1</b><br>Line2<br>Line3</p><p>Line4</p>',
             ],
 
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "Line1",
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'linebreak' => true,
+                            ],
+                        ],
+                        [
+                            'insert' => "Line2",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'linebreak' => true,
+                            ],
+                        ],
+                        [
+                            'insert' => "Line3",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'linebreak' => true,
+                            ],
+                        ],
+                        [
+                            'insert' => "\n\nLine4\n",
+                        ],
+                    ],
+                ],
+                'html' => '<p><b>Line1</b><br>Line2<br>Line3</p><p></p><p>Line4</p>',
+            ],
+
             //Special case (just in case)
             [
                 'deltas' => [
