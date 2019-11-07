@@ -514,6 +514,57 @@ class RendererTest extends TestCase
                 'html' => '<p><b>Line1</b><br>Line2<br>Line3</p><p></p><p>Line4</p>',
             ],
 
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "center",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'center',
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<p class="ql-align-center">center</p>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "right",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'right',
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<p class="ql-align-right">right</p>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "justify",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'justify',
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<p class="ql-align-justify">justify</p>',
+            ],
+
             //Special case (just in case)
             [
                 'deltas' => [
