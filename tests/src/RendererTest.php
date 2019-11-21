@@ -612,6 +612,26 @@ class RendererTest extends TestCase
                 ],
                 'html' => '<p>Line1</p><ul><li>List1</li></ul><p>Line2</p><ul><li>List2</li><li>List3</li></ul><p>Line3</p>',
             ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "Heading",
+                        ],
+                        [
+                            'insert' => "\n\n",
+                            'attributes' => [
+                                'header' => '4',
+                            ],
+                        ],
+                        [
+                            'insert' => "Paragraph\n",
+                        ],
+                    ],
+                ],
+                'html' => '<h4>Heading</h4><h4><br></h4><p>Paragraph</p>',
+            ],
         ];
     }
 }
