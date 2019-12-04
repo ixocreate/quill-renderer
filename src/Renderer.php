@@ -12,13 +12,34 @@ namespace Ixocreate\QuillRenderer;
 use Ixocreate\QuillRenderer\Block\BlockInterface;
 use Ixocreate\QuillRenderer\Block\CompoundInterface;
 use Ixocreate\QuillRenderer\Block\Header1;
+use Ixocreate\QuillRenderer\Block\Header1Center;
+use Ixocreate\QuillRenderer\Block\Header1Justify;
+use Ixocreate\QuillRenderer\Block\Header1Right;
 use Ixocreate\QuillRenderer\Block\Header2;
+use Ixocreate\QuillRenderer\Block\Header2Center;
+use Ixocreate\QuillRenderer\Block\Header2Justify;
+use Ixocreate\QuillRenderer\Block\Header2Right;
 use Ixocreate\QuillRenderer\Block\Header3;
+use Ixocreate\QuillRenderer\Block\Header3Center;
+use Ixocreate\QuillRenderer\Block\Header3Justify;
+use Ixocreate\QuillRenderer\Block\Header3Right;
 use Ixocreate\QuillRenderer\Block\Header4;
+use Ixocreate\QuillRenderer\Block\Header4Center;
+use Ixocreate\QuillRenderer\Block\Header4Justify;
+use Ixocreate\QuillRenderer\Block\Header4Right;
 use Ixocreate\QuillRenderer\Block\Header5;
+use Ixocreate\QuillRenderer\Block\Header5Center;
+use Ixocreate\QuillRenderer\Block\Header5Justify;
+use Ixocreate\QuillRenderer\Block\Header5Right;
 use Ixocreate\QuillRenderer\Block\Header6;
+use Ixocreate\QuillRenderer\Block\Header6Center;
+use Ixocreate\QuillRenderer\Block\Header6Justify;
+use Ixocreate\QuillRenderer\Block\Header6Right;
 use Ixocreate\QuillRenderer\Block\OrderedList;
 use Ixocreate\QuillRenderer\Block\Paragraph;
+use Ixocreate\QuillRenderer\Block\ParagraphCenter;
+use Ixocreate\QuillRenderer\Block\ParagraphJustify;
+use Ixocreate\QuillRenderer\Block\ParagraphRight;
 use Ixocreate\QuillRenderer\Block\UnorderedList;
 use Ixocreate\QuillRenderer\Insert\Bold;
 use Ixocreate\QuillRenderer\Insert\Image;
@@ -68,14 +89,42 @@ final class Renderer
     public function enableDefaults(): void
     {
         $this->addBlock(new Paragraph());
+
+        $this->addBlock(new Header1Right());
+        $this->addBlock(new Header1Center());
+        $this->addBlock(new Header1Justify());
         $this->addBlock(new Header1());
+
+        $this->addBlock(new Header2Right());
+        $this->addBlock(new Header2Center());
+        $this->addBlock(new Header2Justify());
         $this->addBlock(new Header2());
+
+        $this->addBlock(new Header3Right());
+        $this->addBlock(new Header3Center());
+        $this->addBlock(new Header3Justify());
         $this->addBlock(new Header3());
+
+        $this->addBlock(new Header4Right());
+        $this->addBlock(new Header4Center());
+        $this->addBlock(new Header4Justify());
         $this->addBlock(new Header4());
+
+        $this->addBlock(new Header5Right());
+        $this->addBlock(new Header5Center());
+        $this->addBlock(new Header5Justify());
         $this->addBlock(new Header5());
+
+        $this->addBlock(new Header6Right());
+        $this->addBlock(new Header6Center());
+        $this->addBlock(new Header6Justify());
         $this->addBlock(new Header6());
+
         $this->addBlock(new OrderedList());
         $this->addBlock(new UnorderedList());
+        $this->addBlock(new ParagraphRight());
+        $this->addBlock(new ParagraphCenter());
+        $this->addBlock(new ParagraphJustify());
 
         $this->addInsert(new Bold());
         $this->addInsert(new Italic());
