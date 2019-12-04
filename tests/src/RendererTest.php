@@ -514,6 +514,285 @@ class RendererTest extends TestCase
                 'html' => '<p><b>Line1</b><br>Line2<br>Line3</p><p></p><p>Line4</p>',
             ],
 
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "center",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'center',
+                                'header' => 1,
+                            ],
+                        ],
+                        [
+                            'insert' => "right",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'right',
+                                'header' => 1,
+                            ],
+                        ],
+                        [
+                            'insert' => "justify",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'justify',
+                                'header' => 1,
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<h1 class="ql-align-center">center</h1><h1 class="ql-align-right">right</h1><h1 class="ql-align-justify">justify</h1>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "center",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'center',
+                                'header' => 2,
+                            ],
+                        ],
+                        [
+                            'insert' => "right",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'right',
+                                'header' => 2,
+                            ],
+                        ],
+                        [
+                            'insert' => "justify",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'justify',
+                                'header' => 2,
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<h2 class="ql-align-center">center</h2><h2 class="ql-align-right">right</h2><h2 class="ql-align-justify">justify</h2>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "center",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'center',
+                                'header' => 3,
+                            ],
+                        ],
+                        [
+                            'insert' => "right",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'right',
+                                'header' => 3,
+                            ],
+                        ],
+                        [
+                            'insert' => "justify",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'justify',
+                                'header' => 3,
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<h3 class="ql-align-center">center</h3><h3 class="ql-align-right">right</h3><h3 class="ql-align-justify">justify</h3>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "center",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'center',
+                                'header' => 4,
+                            ],
+                        ],
+                        [
+                            'insert' => "right",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'right',
+                                'header' => 4,
+                            ],
+                        ],
+                        [
+                            'insert' => "justify",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'justify',
+                                'header' => 4,
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<h4 class="ql-align-center">center</h4><h4 class="ql-align-right">right</h4><h4 class="ql-align-justify">justify</h4>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "center",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'center',
+                                'header' => 5,
+                            ],
+                        ],
+                        [
+                            'insert' => "right",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'right',
+                                'header' => 5,
+                            ],
+                        ],
+                        [
+                            'insert' => "justify",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'justify',
+                                'header' => 5,
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<h5 class="ql-align-center">center</h5><h5 class="ql-align-right">right</h5><h5 class="ql-align-justify">justify</h5>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "center",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'center',
+                                'header' => 6,
+                            ],
+                        ],
+                        [
+                            'insert' => "right",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'right',
+                                'header' => 6,
+                            ],
+                        ],
+                        [
+                            'insert' => "justify",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'justify',
+                                'header' => 6,
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<h6 class="ql-align-center">center</h6><h6 class="ql-align-right">right</h6><h6 class="ql-align-justify">justify</h6>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "center",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'center',
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<p class="ql-align-center">center</p>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "right",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'right',
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<p class="ql-align-right">right</p>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "justify",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'align' => 'justify',
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<p class="ql-align-justify">justify</p>',
+            ],
+
             //Special case (just in case)
             [
                 'deltas' => [
@@ -561,6 +840,26 @@ class RendererTest extends TestCase
                 ],
                 'html' => '<p>Line1</p><ul><li>List1</li></ul><p>Line2</p><ul><li>List2</li><li>List3</li></ul><p>Line3</p>',
             ],
+
+            /*[
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "Heading",
+                        ],
+                        [
+                            'insert' => "\n\n",
+                            'attributes' => [
+                                'header' => '4',
+                            ],
+                        ],
+                        [
+                            'insert' => "Paragraph\n",
+                        ],
+                    ],
+                ],
+                'html' => '<h4>Heading</h4><h4><br></h4><p>Paragraph</p>',
+            ],*/
         ];
     }
 }
