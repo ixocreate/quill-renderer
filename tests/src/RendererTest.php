@@ -845,67 +845,67 @@ class RendererTest extends TestCase
                 'deltas' => [
                     'ops' => [
                         [
-                            "insert" => "1"
+                            "insert" => "1",
                         ],
                         [
                             "insert" => "\n",
                             "attributes" => [
-                                "list" => "ordered"
-                            ]
+                                "list" => "ordered",
+                            ],
                         ],
                         [
                             "insert" => "s",
                             "attributes" => [
                                 'bold' => true,
-                            ]
+                            ],
                         ],
                         [
-                            "insert" => "a"
-                        ],
-                        [
-                            "insert" => "\n",
-                            "attributes" => [
-                                "list" => "ordered",
-                                "indent" => 1
-                            ]
-                        ],
-                        [
-                            "insert" => "b"
+                            "insert" => "a",
                         ],
                         [
                             "insert" => "\n",
                             "attributes" => [
                                 "list" => "ordered",
-                                "indent" => 1
-                            ]
+                                "indent" => 1,
+                            ],
                         ],
                         [
-                            "insert" => "c"
+                            "insert" => "b",
                         ],
                         [
                             "insert" => "\n",
                             "attributes" => [
                                 "list" => "ordered",
-                                "indent" => 1
-                            ]
+                                "indent" => 1,
+                            ],
                         ],
                         [
-                            "insert" => "2"
-                        ],
-                        [
-                            "insert" => "\n",
-                            "attributes" => [
-                                "list" => "ordered"
-                            ]
-                        ],
-                        [
-                            "insert" => "3"
+                            "insert" => "c",
                         ],
                         [
                             "insert" => "\n",
                             "attributes" => [
-                                "list" => "ordered"
-                            ]
+                                "list" => "ordered",
+                                "indent" => 1,
+                            ],
+                        ],
+                        [
+                            "insert" => "2",
+                        ],
+                        [
+                            "insert" => "\n",
+                            "attributes" => [
+                                "list" => "ordered",
+                            ],
+                        ],
+                        [
+                            "insert" => "3",
+                        ],
+                        [
+                            "insert" => "\n",
+                            "attributes" => [
+                                "list" => "ordered",
+                            ],
                         ],
                     ],
                 ],

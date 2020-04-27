@@ -76,7 +76,7 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
             && \array_key_exists('list', $delta->attributes())
             && $delta->attributes()['list'] === $this->listType
         ) {
-            if (\array_key_exists('indent', $delta->attributes()) ) {
+            if (\array_key_exists('indent', $delta->attributes())) {
                 static::$intend = (int)$delta->attributes()['indent'];
             } else {
                 static::$intend = 0;
