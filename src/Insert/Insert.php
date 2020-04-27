@@ -48,11 +48,11 @@ final class Insert implements InsertInterface
      */
     public function html(): string
     {
-        if (!\is_string($this->delta->insert(""))) {
+        if (!\is_string($this->delta->insert(''))) {
             return '';
         }
 
-        return \htmlspecialchars($this->delta->insert(""), ENT_QUOTES, 'UTF-8');
+        return \htmlspecialchars($this->delta->insert(''), ENT_QUOTES, 'UTF-8');
     }
 
     /**

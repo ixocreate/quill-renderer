@@ -13,7 +13,7 @@ use Ixocreate\QuillRenderer\Renderer;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Ixocreate\QuillRenderer\Renderer
+ * @123covers \Ixocreate\QuillRenderer\Renderer
  */
 class RendererTest extends TestCase
 {
@@ -839,6 +839,77 @@ class RendererTest extends TestCase
                     ],
                 ],
                 'html' => '<p>Line1</p><ul><li>List1</li></ul><p>Line2</p><ul><li>List2</li><li>List3</li></ul><p>Line3</p>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            "insert" => "1"
+                        ],
+                        [
+                            "insert" => "\n",
+                            "attributes" => [
+                                "list" => "ordered"
+                            ]
+                        ],
+                        [
+                            "insert" => "s",
+                            "attributes" => [
+                                'bold' => true,
+                            ]
+                        ],
+                        [
+                            "insert" => "a"
+                        ],
+                        [
+                            "insert" => "\n",
+                            "attributes" => [
+                                "list" => "ordered",
+                                "indent" => 1
+                            ]
+                        ],
+                        [
+                            "insert" => "b"
+                        ],
+                        [
+                            "insert" => "\n",
+                            "attributes" => [
+                                "list" => "ordered",
+                                "indent" => 1
+                            ]
+                        ],
+                        [
+                            "insert" => "c"
+                        ],
+                        [
+                            "insert" => "\n",
+                            "attributes" => [
+                                "list" => "ordered",
+                                "indent" => 1
+                            ]
+                        ],
+                        [
+                            "insert" => "2"
+                        ],
+                        [
+                            "insert" => "\n",
+                            "attributes" => [
+                                "list" => "ordered"
+                            ]
+                        ],
+                        [
+                            "insert" => "3"
+                        ],
+                        [
+                            "insert" => "\n",
+                            "attributes" => [
+                                "list" => "ordered"
+                            ]
+                        ],
+                    ],
+                ],
+                'html' => '<ol><li>1<ol><li><b>s</b>a</li><li>b</li><li>c</li></ol></li><li>2</li><li>3</li></ol>',
             ],
 
             /*[
