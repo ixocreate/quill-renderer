@@ -161,7 +161,7 @@ final class Renderer
     {
         foreach ($this->supportingBlocks as $block) {
             if ($block->isResponsible($delta)) {
-                return $block;
+                return clone $block;
             }
         }
         return null;
@@ -291,7 +291,12 @@ final class Renderer
         $collection = [];
 
         foreach ($ops as $delta) {
-            $responsible = $this->getResponsible($delta);
+            if ($currentBlock === null || !$currentBlock->isResponsible($delta)) {
+                $responsible = $this->getResponsible($delta);
+            } else {
+                $responsible = $currentBlock;
+            }
+
             if ($responsible === null) {
                 $collection[] = $this->insert->withDelta($delta);
                 continue;

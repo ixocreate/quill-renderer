@@ -911,6 +911,454 @@ class RendererTest extends TestCase
                 ],
                 'html' => '<ol><li>1<ol><li><b>s</b>a</li><li>b</li><li>c</li></ol></li><li>2</li><li>3</li></ol>',
             ],
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "paragraph:\nol ",
+                        ],
+                        [
+                            'attributes' => [
+                                'italic' => true,
+                            ],
+                            'insert' => '1',
+                        ],
+                        [
+                            'insert' => '!',
+                        ],
+                        [
+                            'attributes' => [
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'ol ',
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => '2',
+                        ],
+                        [
+                            'insert' => '!',
+                        ],
+                        [
+                            'attributes' => [
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'Click on “',
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'something',
+                        ],
+                        [
+                            'insert' => '” and “',
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'be happy',
+                        ],
+                        [
+                            'insert' => '” ',
+                        ],
+                        [
+                            'attributes' => [
+                                'italic' => true,
+                            ],
+                            'insert' => '2',
+                        ],
+                        [
+                            'insert' => '!',
+                        ],
+                        [
+                            'attributes' => [
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'Step 1: Data',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'it',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'is',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'a',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'very',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'long',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'orderd',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'list',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'with some',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'levels',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'and',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'I need a good',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'test',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'ol ',
+                        ],
+                        [
+                            'attributes' => [
+                                'italic' => true,
+                            ],
+                            'insert' => '3',
+                        ],
+                        [
+                            'insert' => '!',
+                        ],
+                        [
+                            'attributes' => [
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'level 2-1',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'level',
+                        ],
+                        [
+                            'insert' => ' 2-2',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'level ',
+                        ],
+                        [
+                            'attributes' => [
+                                'italic' => true,
+                            ],
+                            'insert' => '2',
+                        ],
+                        [
+                            'insert' => '-3',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'level 2-4',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'level 3-1',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 2,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'level 3-2',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 2,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'level 3-3',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 2,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'level 3-4',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 2,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'level 3-5',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 2,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'level 2-5',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'level 2-6',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'attributes' => [
+                                'bold' => true,
+                            ],
+                            'insert' => 'l',
+                        ],
+                        [
+                            'attributes' => [
+                                'italic' => true,
+                            ],
+                            'insert' => 'e',
+                        ],
+                        [
+                            'attributes' => [
+                                'underline' => true,
+                            ],
+                            'insert' => 'v',
+                        ],
+                        [
+                            'attributes' => [
+                                'strike' => true,
+                            ],
+                            'insert' => 'e',
+                        ],
+                        [
+                            'insert' => 'l 2-7',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'level 2-8',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                        [
+                            'insert' => 'level 2-9',
+                        ],
+                        [
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                            'insert' => "\n",
+                        ],
+                    ],
+                ],
+                'html' => '<p>paragraph:</p><ol><li>ol <i>1</i>!</li><li>ol <b>2</b>!</li><li>Click on “<b>something</b>” and “<b>be happy</b>” <i>2</i>!<ol><li><b>Step 1: Data</b></li><li>it</li><li><b>is</b></li><li><b>a</b></li><li><b>very</b></li><li><b>long</b></li><li><b>orderd</b></li><li><b>list</b></li><li><b>with some</b></li><li><b>levels</b></li><li>and</li><li>I need a good</li><li>test</li></ol></li><li>ol <i>3</i>!<ol><li>level 2-1</li><li><b>level</b> 2-2</li><li>level <i>2</i>-3</li><li>level 2-4<ol><li><b>level 3-1</b></li><li><b>level 3-2</b></li><li><b>level 3-3</b></li><li><b>level 3-4</b></li><li><b>level 3-5</b></li></ol></li><li>level 2-5</li><li>level 2-6</li><li><b>l</b><i>e</i><u>v</u><s>e</s>l 2-7</li><li>level 2-8</li><li>level 2-9</li></ol></li></ol>',
+            ],
 
             /*[
                 'deltas' => [

@@ -35,6 +35,11 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
     private $key = 0;
 
     /**
+     * @var int
+     */
+    private $intendKey = 0;
+
+    /**
      * @var array
      */
     private $intendMap = [];
@@ -54,7 +59,7 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
 
         if (!\array_key_exists($this->key, $block->inserts)) {
             $block->inserts[$this->key] = [];
-            $block->intendMap[$this->key] = static::$intend;
+            //$block->intendMap[$this->key] = static::$intend;
         }
 
         foreach ($inserts as $insert) {
@@ -78,8 +83,10 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
         ) {
             if (\array_key_exists('indent', $delta->attributes())) {
                 static::$intend = (int)$delta->attributes()['indent'];
+                $this->intendMap[$this->intendKey++] = (int)$delta->attributes()['indent'];
             } else {
                 static::$intend = 0;
+                $this->intendMap[$this->intendKey++] = 0;
             }
 
             return true;
@@ -106,15 +113,15 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
      */
     public function html(): string
     {
-        $curIndex = 0;
-        return $this->htmlRecursive(\array_reverse($this->inserts), $curIndex, \count($this->inserts) - 1);
+        $curIndex = \count($this->inserts) - 1;
+        return $this->htmlRecursive($this->inserts, $curIndex);
     }
 
-    private function htmlRecursive(array $insertsGroup, int &$curIndex, int $insertCount)
+    private function htmlRecursive(array $insertsGroup, int &$curIndex)
     {
         $html = '';
 
-        for (; $curIndex <= $insertCount; $curIndex++) {
+        for (; $curIndex >= 0; $curIndex--) {
             $key = $curIndex;
 
             $html .= '<li>';
@@ -124,13 +131,13 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
                 $html .= $insert->html();
             }
 
-            if ($key < $insertCount && $this->intendMap[$key] < $this->intendMap[$key + 1]) {
-                ++$curIndex;
-                $html .= $this->htmlRecursive($insertsGroup, $curIndex, $insertCount);
+            if ($key > 0 && \array_key_exists($key, $this->intendMap) && $this->intendMap[$key] < $this->intendMap[$key - 1]) {
+                --$curIndex;
+                $html .= $this->htmlRecursive($insertsGroup, $curIndex);
             }
             $html .= '</li>';
 
-            if ($key < $insertCount && $this->intendMap[$key] > $this->intendMap[$key + 1]) {
+            if ($key > 0  && \array_key_exists($key, $this->intendMap) && $this->intendMap[$key] > $this->intendMap[$key - 1]) {
                 break;
             }
         }
