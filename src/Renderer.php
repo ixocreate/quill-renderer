@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\QuillRenderer;
 
+use Ixocreate\QuillRenderer\Block\AbstractList;
 use Ixocreate\QuillRenderer\Block\BlockInterface;
 use Ixocreate\QuillRenderer\Block\CompoundInterface;
 use Ixocreate\QuillRenderer\Block\Header1;
@@ -150,7 +151,7 @@ final class Renderer
      */
     public function addBlock(BlockInterface $block): void
     {
-        $this->supportingBlocks[] = $block;
+        $this->supportingBlocks[\get_class($block)] = $block;
     }
 
     /**
@@ -159,9 +160,13 @@ final class Renderer
      */
     private function getResponsible(Delta $delta): ?BlockInterface
     {
-        foreach ($this->supportingBlocks as $block) {
+        foreach ($this->supportingBlocks as $class => $block) {
             if ($block->isResponsible($delta)) {
-                return clone $block;
+                if ($block instanceof AbstractList) {
+                    $this->supportingBlocks[$class] = clone $block;
+                    $this->supportingBlocks[$class]->reset();
+                }
+                return $block;
             }
         }
         return null;

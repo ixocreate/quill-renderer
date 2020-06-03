@@ -1360,6 +1360,68 @@ class RendererTest extends TestCase
                 'html' => '<p>paragraph:</p><ol><li>ol <i>1</i>!</li><li>ol <b>2</b>!</li><li>Click on “<b>something</b>” and “<b>be happy</b>” <i>2</i>!<ol><li><b>Step 1: Data</b></li><li>it</li><li><b>is</b></li><li><b>a</b></li><li><b>very</b></li><li><b>long</b></li><li><b>orderd</b></li><li><b>list</b></li><li><b>with some</b></li><li><b>levels</b></li><li>and</li><li>I need a good</li><li>test</li></ol></li><li>ol <i>3</i>!<ol><li>level 2-1</li><li><b>level</b> 2-2</li><li>level <i>2</i>-3</li><li>level 2-4<ol><li><b>level 3-1</b></li><li><b>level 3-2</b></li><li><b>level 3-3</b></li><li><b>level 3-4</b></li><li><b>level 3-5</b></li></ol></li><li>level 2-5</li><li>level 2-6</li><li><b>l</b><i>e</i><u>v</u><s>e</s>l 2-7</li><li>level 2-8</li><li>level 2-9</li></ol></li></ol>',
             ],
 
+            [
+                'deltas' => [
+                    'ops' => [
+                        [
+                            'insert' => "Paragraph\n",
+                        ],
+                        [
+                            'insert' => "list 1",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'list' => 'ordered',
+                            ],
+                        ],
+                        [
+                            'insert' => "list 1.1",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                        ],
+                        [
+                            'insert' => "list 1.2",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                        ],
+                        [
+                            'insert' => "Paragraph\n",
+                        ],
+                        [
+                            'insert' => "list 2",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'list' => 'ordered',
+                            ],
+                        ],
+                        [
+                            'insert' => "list 2.1",
+                        ],
+                        [
+                            'insert' => "\n",
+                            'attributes' => [
+                                'indent' => 1,
+                                'list' => 'ordered',
+                            ],
+                        ],
+                    ],
+                ],
+                'html' => '<p>Paragraph</p><ol><li>list 1<ol><li>list 1.1</li><li>list 1.2</li></ol></li></ol><p>Paragraph</p><ol><li>list 2<ol><li>list 2.1</li></ol></li></ol>',
+            ],
+
             /*[
                 'deltas' => [
                     'ops' => [

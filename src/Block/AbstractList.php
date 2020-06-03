@@ -59,7 +59,6 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
 
         if (!\array_key_exists($this->key, $block->inserts)) {
             $block->inserts[$this->key] = [];
-            //$block->intendMap[$this->key] = static::$intend;
         }
 
         foreach ($inserts as $insert) {
@@ -143,5 +142,13 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
         }
 
         return '<' . $this->htmlTag . '>' . $html . '</' . $this->htmlTag . '>';
+    }
+
+    public function reset()
+    {
+        $this->key = 0;
+        $this->inserts = [];
+        $this->intendKey = 0;
+        $this->intendMap = [];
     }
 }
