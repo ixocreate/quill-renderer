@@ -1422,6 +1422,42 @@ class RendererTest extends TestCase
                 'html' => '<p>Paragraph</p><ol><li>list 1<ol><li>list 1.1</li><li>list 1.2</li></ol></li></ol><p>Paragraph</p><ol><li>list 2<ol><li>list 2.1</li></ol></li></ol>',
             ],
 
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        ['insert' => "outside\nMain1"],
+                        ['insert' => "\n", 'attributes' => ['list' => 'ordered']],
+                        ['insert' => 'Sub1'],
+                        ['insert' => "\n", 'attributes' => ['list' => 'ordered', 'indent' => 1]],
+                        ['insert' => 'SubSub1'],
+                        ['insert' => "\n", 'attributes' => ['list' => 'ordered', 'indent' => 2]],
+                        ['insert' => 'Main2'],
+                        ['insert' => "\n", 'attributes' => ['list' => 'ordered']],
+                        ['insert' => 'outside'],
+                    ],
+                ],
+                'html' => '<p>outside</p><ol><li>Main1<ol><li>Sub1<ol><li>SubSub1</li></ol></li></ol></li><li>Main2</li></ol><p>outside</p>',
+            ],
+
+            [
+                'deltas' => [
+                    'ops' => [
+                        ['insert' => "outside\nMain1"],
+                        ['insert' => "\n", 'attributes' => ['list' => 'bullet']],
+                        ['insert' => 'Sub1'],
+                        ['insert' => "\n", 'attributes' => ['list' => 'bullet', 'indent' => 1]],
+                        ['insert' => 'SubSub1'],
+                        ['insert' => "\n", 'attributes' => ['list' => 'bullet', 'indent' => 2]],
+                        ['insert' => 'Main2'],
+                        ['insert' => "\n", 'attributes' => ['list' => 'bullet']],
+                        ['insert' => 'outside'],
+                    ],
+                ],
+                'html' => '<p>outside</p><ul><li>Main1<ul><li>Sub1<ul><li>SubSub1</li></ul></li></ul></li><li>Main2</li></ul><p>outside</p>',
+            ],
+
+
             /*[
                 'deltas' => [
                     'ops' => [
