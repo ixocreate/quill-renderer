@@ -121,7 +121,7 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
         $html = '';
 
         for (; $curIndex >= 0; $curIndex--) {
-            $key = $curIndex;
+            $currentIntend = \array_key_exists($curIndex, $this->intendMap) ? $this->intendMap[$curIndex] : 0;
 
             $html .= '<li>';
 
@@ -130,18 +130,24 @@ abstract class AbstractList implements BlockInterface, CompoundInterface
                 $html .= $insert->html();
             }
 
-            if ($key > 0 && \array_key_exists($key, $this->intendMap) && $this->intendMap[$key] < $this->intendMap[$key - 1]) {
+            if ($curIndex > 0 && \array_key_exists($curIndex - 1, $this->intendMap) && $currentIntend < $this->intendMap[$curIndex - 1]) {
                 --$curIndex;
                 $html .= $this->htmlRecursive($insertsGroup, $curIndex);
             }
             $html .= '</li>';
 
-            if ($key > 0  && \array_key_exists($key, $this->intendMap) && $this->intendMap[$key] > $this->intendMap[$key - 1]) {
+            if ($curIndex > 0 && \array_key_exists($curIndex - 1, $this->intendMap) && $currentIntend > $this->intendMap[$curIndex - 1]) {
                 break;
             }
         }
 
-        return '<' . $this->htmlTag . '>' . $html . '</' . $this->htmlTag . '>';
+        $outerHtml = '<' . $this->htmlTag . '>' . $html;
+
+        for ($i = 0; $i < 1; $i++) {
+            $outerHtml .= '</' . $this->htmlTag . '>';
+        }
+
+        return $outerHtml;
     }
 
     public function reset()

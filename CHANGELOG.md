@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ixocreate/quill-renderer/compare/0.1.6...develop)
+## [Unreleased](https://github.com/ixocreate/quill-renderer/compare/0.2.1...develop)
+
+## [v0.2.1 (2022-06-10)](https://github.com/ixocreate/schema-package/compare/0.2.0...0.2.1)
+### Fixed
+- fix list processing
+
+## [v0.1.9 (2020-06-03)](https://github.com/ixocreate/schema-package/compare/0.1.8...0.1.9)
+### Fixed
+- fix list processing
 
 ## [v0.1.6 (2019-12-04)](https://github.com/ixocreate/schema-package/compare/0.1.5...0.1.6)
 ### Fixed
