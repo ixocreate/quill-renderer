@@ -65,10 +65,16 @@ final class Superscript implements InsertInterface
      */
     public function isResponsible(Delta $delta): bool
     {
-        return
-            \is_array($delta->attributes([]))
+        $isResponsible = \is_array($delta->attributes([]))
             && \array_key_exists('super', $delta->attributes([]))
-            && $delta->attributes([])['super'] === true
-        ;
+            && $delta->attributes([])['super'] === true;
+
+        if (!$isResponsible) {
+            $isResponsible = \is_array($delta->attributes([]))
+                && \array_key_exists('script', $delta->attributes([]))
+                && $delta->attributes([])['script'] === 'super';
+        }
+
+        return $isResponsible;
     }
 }

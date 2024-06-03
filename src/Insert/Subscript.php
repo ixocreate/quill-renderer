@@ -65,10 +65,16 @@ final class Subscript implements InsertInterface
      */
     public function isResponsible(Delta $delta): bool
     {
-        return
-            \is_array($delta->attributes([]))
+        $isResponsible = \is_array($delta->attributes([]))
             && \array_key_exists('sub', $delta->attributes([]))
-            && $delta->attributes([])['sub'] === true
-        ;
+            && $delta->attributes([])['sub'] === true;
+
+        if (!$isResponsible) {
+            $isResponsible = \is_array($delta->attributes([]))
+                && \array_key_exists('script', $delta->attributes([]))
+                && $delta->attributes([])['script'] === 'sub';
+        }
+
+        return $isResponsible;
     }
 }
